@@ -43,7 +43,7 @@ def add_prod():
             Active = False
 
 def load():
-    fi = open('D:\Python online class\Assignment6\storefiles\database1.txt', 'r')
+    fi = open('database1.txt', 'r')
     big_text = fi.read()
     product_list = big_text.split('\n')
     
