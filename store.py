@@ -10,6 +10,16 @@ def showmenu():
 products = []
 
 
+def deleter():
+    user_choice = input("Please enter the serial of the product you'd like to delete:")
+    for i in range(len(products)):
+        if products[i]['serial'] == user_choice:
+            print(products[i]['name']+' is removed.')
+            del products[i]
+            break
+
+
+
 def edit_prod():
     user_choice = input("Please enter the serial of the product you'd like to edit:")
     for i in range(len(products)):
@@ -43,7 +53,7 @@ def add_prod():
             Active = False
 
 def load():
-    fi = open('database1.txt', 'r')
+    fi = open('D:\Python online class\Assignment6\storefiles\database1.txt', 'r')
     big_text = fi.read()
     product_list = big_text.split('\n')
     
@@ -72,7 +82,7 @@ while active:
     elif choice == 2:
         edit_prod()
     elif choice == 3:
-        pass
+        deleter()
     elif choice == 4:
         pass
     elif choice == 5:
