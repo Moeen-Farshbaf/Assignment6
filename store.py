@@ -11,7 +11,7 @@ products = []
 
 
 def deleter():
-    user_choice = input("Please enter the serial of the product you'd like to delete:")
+    user_choice = input("Please enter the serial of the product you'd like to delte:")
     for i in range(len(products)):
         if products[i]['serial'] == user_choice:
             print(products[i]['name']+' is removed.')
@@ -62,7 +62,7 @@ def load():
         mydict = {'name':product_info[0], 'serial':product_info[1] , 'price':product_info[2] , 'quantity':product_info[3]}
         products.append(mydict)
 
-5
+
 load()
 
 
@@ -91,11 +91,20 @@ while active:
             for key,value in product.items():
                 
                 print(key+": "+value)
+            
             print()
            
     elif choice == 6:
         pass
+
     elif choice == 7:
+        fi = open('D:\Python online class\Assignment6\storefiles\database1.txt', 'w')
+        print('\n\tsaving changes')
+        for i in range (len(products)):
+            fi.write(products[i]['name']+','+str(products[i]['serial'])+','+str(products[i]['price'])+','+str(products[i]['quantity'])+'\n')
+        print('\n\tchanges saved successfully')
         exit()
+
+
 
 
