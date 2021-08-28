@@ -8,10 +8,44 @@ def showmenu():
     print('7. Exit')
 
 products = []
+basket = {}
+
+
+def prodbuyer():
+    buying = True
+    while buying:
+        serial_buy = input('Enter the serial of the item you want')
+        amount = input('Enter the amount of the item you want')
+        for i in range(len(products)):
+            if serial_buy == products[i]['serial']:
+                basket[products[i]['name']]=int(amount)
+        will = input ("Do you want to buy more items?(y/n)")
+        if will == 'n':
+            print("you've added ")
+            for k,v in basket.items():
+                print(str(v) +" "+ k+"s")
+            print ('to your basket')
+            
+            
+
+            buying = False
+        elif will =='y':
+            print("you've added ")
+            for k,v in basket.items():
+                print(str(v) +" "+ k+"s")
+            print ('to your basket so far.')
+            pass
+            
+
+        
+
+
+
+
 
 
 def deleter():
-    user_choice = input("Please enter the serial of the product you'd like to delte:")
+    user_choice = input("Please enter the serial of the product you'd like to delete:")
     for i in range(len(products)):
         if products[i]['serial'] == user_choice:
             print(products[i]['name']+' is removed.')
@@ -84,27 +118,46 @@ while active:
     elif choice == 3:
         deleter()
     elif choice == 4:
-        pass
-    elif choice == 5:
+        searchactive = True
+        while searchactive:
+           
+            found= []
+            item = input('What are you looking for?')
             
-        for product in products:
-            for key,value in product.items():
                 
-                print(key+": "+value)
-            
-            print()
+            for i in range (len(products)):
+                if products[i]['name'] == item:
+                    found.append(products[i]['serial'])
+                else:
+                    pass
+
+            if len(found) != 1:
+                print('Product not found')
+            else:
+                for i in found:
+                    print( item +' is found its serial is: '+i)
+            will = input('Do you want to keep searching?(y/n)')
+            if will == 'y':
+                pass
+            elif will == 'n':
+                print('Ok have fun.')
+                searchactive = False
+    elif choice == 5:
+                
+            for product in products:
+                for key,value in product.items():
+                    
+                    print(key+": "+value)
+                print()
            
     elif choice == 6:
-        pass
-
+        prodbuyer()
     elif choice == 7:
         fi = open('D:\Python online class\Assignment6\storefiles\database1.txt', 'w')
         print('\n\tsaving changes')
         for i in range (len(products)):
+            if i == len(products):
+                fi.write(products[i]['name']+','+str(products[i]['serial'])+','+str(products[i]['price'])+','+str(products[i]['quantity']))
             fi.write(products[i]['name']+','+str(products[i]['serial'])+','+str(products[i]['price'])+','+str(products[i]['quantity'])+'\n')
         print('\n\tchanges saved successfully')
         exit()
-
-
-
-
